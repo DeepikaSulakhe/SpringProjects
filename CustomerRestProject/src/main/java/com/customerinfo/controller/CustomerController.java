@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.customerinfo.dto.CustomerDTO;
 import com.customerinfo.service.CustomerService;
 
+import jakarta.validation.Valid;
+
 
 @RestController
 @RequestMapping("/customerapi")
@@ -30,7 +32,7 @@ public class CustomerController {
 	}
 	
 	@PostMapping("/addCustomer")
-	public CustomerDTO saveCustomer(@RequestBody CustomerDTO cusDto) {
+	public CustomerDTO saveCustomer(@Valid @RequestBody CustomerDTO cusDto) {
 		return service.saveCustomerToDb(cusDto);
 	}
 	
@@ -41,7 +43,7 @@ public class CustomerController {
 	}
 	
 	@PutMapping("edit/{id}")
-	public CustomerDTO updateCustomer(@PathVariable int id, @RequestBody CustomerDTO cusDto) {
+	public CustomerDTO updateCustomer(@PathVariable int id, @Valid @RequestBody CustomerDTO cusDto) {
 		return service.updateCustomerToDb(id,cusDto);
 		
 	}
